@@ -16,7 +16,7 @@ Install depencies
 2. ``pip install -Ur requirements.txt``
 
 # Developing
-When developing, always work on a child branch. (main) is the parent branch
+When developing, always work on a child branch. (main) is the parent branch.
 The name of the branch should show what is done on it.
 To create a child branch, go to the parent branch and type:
 1. ``git checkout -b [NAME_OF_BRANCH]``
