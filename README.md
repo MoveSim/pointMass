@@ -17,7 +17,7 @@ Install depencies
 
 # Developing
 When developing, always work on a child branch. (main) is the parent branch.
-The name of the branch should clearly show what is done on it.
+The name of the branch should show what is done on it.
 To create a child branch, go to the parent branch and type:
 1. ``git checkout -b [NAME_OF_BRANCH]``
 
