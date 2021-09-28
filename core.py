@@ -21,6 +21,7 @@ for i in range(1, len(t_array)):
     x.append(max(0, x[i-1] + v[i-1]*delta_t + g*math.pow(delta_t, 2)))
 
 x = pd.DataFrame(x)
+import pdb; pdb.set_trace()
 x.reset_index(x.index/precision)
 
 x.plot()
