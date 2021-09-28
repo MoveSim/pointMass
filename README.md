@@ -34,4 +34,4 @@ When you want to push your work for the first time see option 1, else option 2:
 1. ``git push --set-upstream origin [BRANCH_NAME]``
 2. ``git push``
 
-Go to github to ask for a merge request.
+Go to github.com to ask for a merge request.
