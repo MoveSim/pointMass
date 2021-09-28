@@ -20,7 +20,13 @@ for i in range(1, len(t_array)):
     v.append(v[i-1] + g*delta_t)
     x.append(max(0, x[i-1] + v[i-1]*delta_t + g*math.pow(delta_t, 2)))
 
-x = pd.DataFrame(x)
+data = {
+    "x": x,
+    "v": v,
+    "t": range(0, t_max, delta_t)
+}
+
+data = pd.DataFrame(data)
 import pdb; pdb.set_trace()
 x.reset_index(x.index/precision)
 
