@@ -13,7 +13,7 @@ Activate virtual environment
 
 Install depencies
 1. ``pip install -U pip``
-2. ``pip install -U requirements.txt``
+2. ``pip install -Ur requirements.txt``
 
 # Developing
 When developing, always work on a child branch (main) is the parent branch
