@@ -17,10 +17,7 @@ def animate_shit(y_data):
     ax.set_aspect('equal', adjustable='box')
     ax.plot([-11, 11], [0, 0])
     patch = plt.Circle((0, 11), radius, fc='y')
-
-    def init():
-        ax.add_patch(patch)
-        return patch,
+    ax.add_patch(patch)
 
     def animate(i):
         x = 0
@@ -29,7 +26,6 @@ def animate_shit(y_data):
         return patch,
 
     ani = animation.FuncAnimation(fig, animate,
-                            init_func=init,
                             frames=len(y_data),
                             interval=1,
                             blit=True)
