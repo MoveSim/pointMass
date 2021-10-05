@@ -1,6 +1,7 @@
 import math
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 ## Variables
 y0 = 10
@@ -22,6 +23,14 @@ for i in range(1, len(t_array)):
         v[-1] *= -1 * bounce_coeff
     v.append(v[i-1] + g*delta_t)
     y.append(max(0, y[i-1] + v[i-1]*delta_t + g*math.pow(delta_t, 2)))
+
+
+# test matrix
+A = np.array([[-mass,0],[0,-mass]])
+C = np.array([[0], [-g*mass]])
+X = np.matmul(np.linalg.inv(A),C)
+
+import pdb; pdb.set_trace()
 
 # save the data
 data = {
