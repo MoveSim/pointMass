@@ -1,5 +1,5 @@
 import math
-import matplotlib.pyplot as plt
+from animation import animate_shit
 import pandas as pd
 
 ## Variables
@@ -7,8 +7,8 @@ y0 = 10
 v0 = 0
 mass = 5
 g = -9.81
-t_max = 20
-delta_t = 0.001
+t_max = 13
+delta_t = 0.01
 precision = int(1/delta_t)
 bounce_coeff = 0.8
 
@@ -33,8 +33,5 @@ data = pd.DataFrame(data)
 data = data.set_index(data["time(s)"])
 data = data.drop("time(s)", axis=1)
 
-data.plot()
-plt.show()
+animate_shit(list(data["y"]))
 
-
-import pdb; pdb.set_trace()
