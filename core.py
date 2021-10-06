@@ -15,10 +15,10 @@ delta_t = 0.01
 precision = int(1/delta_t)
 bounce_coeff = 0.8
 
+
 # core calculations
 t_array = range(int(t_max*precision))
 
-# test matrix
 for i in range(1, len(t_array)):
     if ypos[-1] <= 0:
         vy[-1] *= -1 * bounce_coeff
@@ -27,10 +27,10 @@ for i in range(1, len(t_array)):
     C = np.array([[0], [-g*mass]])
     X = np.matmul(np.linalg.inv(A),C)
     # integrating to get the velocity and position
-    vx.append(vx[i-1] + X[0]*delta_t)
-    vy.append(vy[i-1] + X[1]*delta_t)
-    xpos.append(xpos[i-1] + vx[i-1]*delta_t + X[0]*math.pow(delta_t, 2))
-    ypos.append(max(0, ypos[i-1] + vy[i-1]*delta_t + X[1]*math.pow(delta_t, 2)))
+    vx.append(vx[-1] + X[0]*delta_t)
+    vy.append(vy[-1] + X[1]*delta_t)
+    xpos.append(xpos[-1] + vx[-1]*delta_t + X[0]*math.pow(delta_t, 2))
+    ypos.append(max(0, ypos[-1] + vy[-1]*delta_t + X[1]*math.pow(delta_t, 2)))
 
 # save the data
 data = {
