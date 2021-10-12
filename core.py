@@ -35,10 +35,6 @@ for i in range(1, len(t_array)):
     xpos.append(xpos[-1] + vx[-1]*delta_t + X[0][0]*math.pow(delta_t, 2))
     ypos.append(max(0, ypos[-1] + vy[-1]*delta_t + X[1][0]*math.pow(delta_t, 2)))
 
-    # check where the energy is lost
-    # if math.sqrt(math.pow(vx[-1], 2) + math.pow(vy[-1], 2)) < v_tot:
-    #     v_tot = math.sqrt(math.pow(vx[-1], 2) + math.pow(vy[-1], 2))
-
 # save the data
 data = {
     "ypos": ypos,

@@ -4,7 +4,8 @@ from matplotlib import animation
 
 class AnimateShit:
     """"
-    Class to animate the bouncing ball, assuming the x position is constant (0).
+    Class to animate the bouncing ball, given the x and y positions and the velocity in x and y
+    direction.
     """
     def __init__(self, data):
         self.radius = 0.75
@@ -14,7 +15,7 @@ class AnimateShit:
         self.vy = list(data["vy"])
         self.fig, self.ax = plt.subplots()
         self.ball = plt.Circle((self.x_data[0], self.y_data[0]), self.radius)
-        self.quiver = self.ax.quiver(*self.get_arrow(0))
+        self.arrow = None
 
     def set_figure(self):
         self.ax.set_aspect('equal', adjustable='box')
@@ -48,11 +49,10 @@ class AnimateShit:
         x = self.x_data[frame]
         y = self.y_data[frame]
         self.ball.center = (x, y)
-        # self.quiver.remove()
-        # self.quiver = self.quiver(*self.get_arrow(i))
-        # elf.arrow.remove()
-        # self.arrow = plt.arrow(*self.get_arrow(i))
 
-        return self.ball,
+        self.arrow = plt.Arrow(*self.get_arrow(frame))
+        self.ax.add_patch(self.arrow)
+
+        return self.ball, self.arrow
 
 
