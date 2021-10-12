@@ -2,32 +2,57 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 
 
-def animate_shit(y_data):
+class AnimateShit:
     """"
-    Function to animate the bouncing ball, assuming the x position is constant (0).
-
-    :param y_data: list with y positions over the time.
+    Class to animate the bouncing ball, assuming the x position is constant (0).
     """
+    def __init__(self, data):
+        self.radius = 0.75
+        self.x_data = list(data["xpos"])
+        self.y_data = [y + self.radius for y in list(data["ypos"])]
+        self.vx = list(data["vx"])
+        self.vy = list(data["vy"])
+        self.fig, self.ax = plt.subplots()
+        self.ball = plt.Circle((self.x_data[0], self.y_data[0]), self.radius)
+        self.quiver = self.ax.quiver(*self.get_arrow(0))
 
-    fig = plt.figure()
+    def set_figure(self):
+        self.ax.set_aspect('equal', adjustable='box')
+        self.ax.set_xlim(-11, 11)
+        self.ax.set_ylim(-.25, 11.75)
+        # horizontal limits
+        self.ax.plot([-11, 11], [0, 0], c='black')
+        self.ax.plot([-10.75, 10.75], [11.5, 11.5], c='b')
+        # vertical limits
+        self.ax.plot([-10.75, -10.75], [0, 11.5], c='b')
+        self.ax.plot([10.75, 10.75], [0, 11.5], c='b')
 
-    radius = 0.75
+    def run(self):
+        self.set_figure()
+        self.ax.add_patch(self.ball)
+        ani = animation.FuncAnimation(self.fig, self.animate,
+                                      frames=len(self.y_data),
+                                      interval=1,
+                                      blit=True)
 
-    ax = plt.axes(xlim=(-11, 11), ylim=(0, 11))
-    ax.set_aspect('equal', adjustable='box')
-    ax.plot([-11, 11], [0, 0])
-    patch = plt.Circle((0, 11), radius, fc='y')
-    ax.add_patch(patch)
+        plt.show()
 
-    def animate(i):
-        x = 0
-        y = y_data[i] + radius
-        patch.center = (x, y)
-        return patch,
+    def get_arrow(self, i):
+        x = self.x_data[i]
+        y = self.y_data[i]
+        u = self.vx[i]
+        v = self.vy[i]
+        return x, y, u, v
 
-    ani = animation.FuncAnimation(fig, animate,
-                            frames=len(y_data),
-                            interval=1,
-                            blit=True)
+    def animate(self, frame):
+        x = self.x_data[frame]
+        y = self.y_data[frame]
+        self.ball.center = (x, y)
+        # self.quiver.remove()
+        # self.quiver = self.quiver(*self.get_arrow(i))
+        # elf.arrow.remove()
+        # self.arrow = plt.arrow(*self.get_arrow(i))
 
-    plt.show()
+        return self.ball,
+
+
