@@ -2,6 +2,7 @@ import math
 from animation import AnimateShit
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 ## Variables
 xpos = [0]   # starting x-position
@@ -33,13 +34,22 @@ for i in range(1, len(t_array)):
     xpos.append(xpos[-1] + vx[-1]*delta_t + X[0][0]*math.pow(delta_t, 2))
     ypos.append(max(0, ypos[-1] + vy[-1]*delta_t + X[1][0]*math.pow(delta_t, 2)))
 
+pot_energy = [mass*-g*y for y in ypos]
+velocity = np.hypot(vx,vy)
+kin_energy = [0.5*mass*vel**2 for vel in velocity]
+total_energy = [x + y for x, y in zip(pot_energy, kin_energy)]
+
+
 # save the data
 data = {
     "ypos": ypos,
     "xpos": xpos,
     "vy": vy,
     "vx": vx,
-    "time(s)": list(x/precision for x in range(0, t_max*precision))
+    "time(s)": list(x/precision for x in range(0, t_max*precision)),
+    "total_E": list(total_energy),
+    "pot_E": list(pot_energy),
+    "kin_E": list(kin_energy)
 }
 data = pd.DataFrame(data)
 data = data.set_index(data["time(s)"])
@@ -47,3 +57,7 @@ data = data.drop("time(s)", axis=1)
 
 AnimateShit(data).run()
 
+plt.plot(pot_energy)
+plt.plot(kin_energy)
+plt.plot(total_energy)
+plt.show()
