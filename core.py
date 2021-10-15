@@ -15,10 +15,6 @@ t_max = 20
 delta_t = 0.01
 precision = int(1/delta_t)
 bounce_coeff = 1
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 
 # core calculations
 t_array = range(int(t_max*precision))
