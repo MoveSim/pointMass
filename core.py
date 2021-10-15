@@ -37,9 +37,7 @@ for i in range(1, len(t_array)):
 pot_energy = [mass*-g*y for y in ypos]
 velocity = np.hypot(vx,vy)
 kin_energy = [0.5*mass*vel**2 for vel in velocity]
-total_energy = []
-for i in range(len(pot_energy)):
-    total_energy.append(pot_energy[i]+kin_energy[i])
+total_energy = [x + y for x, y in zip(pot_energy, kin_energy)]
 
 
 # save the data
