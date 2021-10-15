@@ -35,10 +35,8 @@ for i in range(1, len(t_array)):
     ypos.append(max(0, ypos[-1] + vy[-1]*delta_t + X[1][0]*math.pow(delta_t, 2)))
 
 pot_energy = [mass*-g*y for y in ypos]
-magn_velocity = []
-for i in range(len(vx)):
-    magn_velocity.append(math.sqrt(vx[i]**2+vy[i]**2))
-kin_energy = [0.5*mass*vel**2 for vel in magn_velocity]
+velocity = np.hypot(vx,vy)
+kin_energy = [0.5*mass*vel**2 for vel in velocity]
 total_energy = []
 for i in range(len(pot_energy)):
     total_energy.append(pot_energy[i]+kin_energy[i])
