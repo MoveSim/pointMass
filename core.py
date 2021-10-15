@@ -15,10 +15,8 @@ delta_t = 0.01
 precision = int(1/delta_t)
 bounce_coeff = 1
 
-
 # core calculations
 t_array = range(int(t_max*precision))
-v_tot = 10
 for i in range(1, len(t_array)):
     if ypos[-1] <= 0 or ypos[-1] >= 10:
         vy[-1] *= -1 * bounce_coeff
